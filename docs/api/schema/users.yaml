@@ -1,0 +1,23 @@
+Users:
+  type: object
+  required:
+    - id
+  properties:
+    name:
+        type: string
+        x-faker: name.firstName
+    admin_type:
+        type: integer
+        minimum: 0
+        maximum: 5
+    created_date:
+        type: string
+        format: date
+    id:
+        type: string
+        format: uuid
+  example:
+    id: aaaa-1111-bbbb-2222
+    name: サンプル
+    admin_type: 0
+    created_date: 20200220

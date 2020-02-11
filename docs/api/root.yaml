@@ -25,7 +25,7 @@ paths:
       operationId: GetSampleKData
       summary: Get all user.
       description: Returns an array of User model
-      parameters:
+      parameters: 
         - in: query
           name: id
           description: ID
@@ -34,44 +34,23 @@ paths:
             format: uuid
           required: true
           example: fdadfad84-dafd-8495-fhadfalsdfkj
-      responses:
-        "200":
-          description: 成功
+      responses: 
+        '200': 
+          description: 成功 
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/Users"
-        "400":
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/Users'
+        '400': 
           description: 失敗
           content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/400error"
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/400error'
 components:
   schemas:
     Users:
-      type: object
-      required:
-        - id
-      properties:
-        name:
-          type: string
-          x-faker: name.firstName
-        admin_type:
-          type: integer
-          minimum: 0
-          maximum: 5
-        created_date:
-          type: string
-          format: date
-        id:
-          type: string
-          format: uuid
-      example:
-        id: aaaa-1111-bbbb-2222
-        name: サンプル
-        admin_type: 0
-        created_date: 20200220
+      $ref: './schema/users.yaml#/Users'
     400error:
       type: object
       properties:
