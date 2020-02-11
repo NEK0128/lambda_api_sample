@@ -1,0 +1,80 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  description: A short description of API.
+  termsOfService: http://example.com/terms/
+  contact:
+    name: API support
+    url: http://www.example.com/support
+    email: support@example.com
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.2
+tags:
+  - name: sample
+    description: サンプル
+servers:
+  - url: http://localhost:4010
+    description: Development server
+paths:
+  /users:
+    get:
+      tags:
+        - sample
+      operationId: GetSampleKData
+      summary: Get all user.
+      description: Returns an array of User model
+      parameters: 
+        - in: query
+          name: id
+          description: ID
+          schema:
+            type: string
+            format: uuid
+          required: true
+          example: fdadfad84-dafd-8495-fhadfalsdfkj
+      responses: 
+        '200': 
+          description: 成功 
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/Users'
+        '400': 
+          description: 失敗
+          content:
+            application/json: 
+              schema: 
+                $ref: '#/components/schemas/400error'
+components:
+  schemas:
+    Users:
+      required:
+        - id
+      type: object
+      properties:
+        name:
+          type: string
+          x-faker: name.firstName
+        admin_type:
+          type: integer
+          minimum: 0
+          maximum: 5
+        created_date:
+          type: string
+          format: date
+        id:
+          type: string
+          format: uuid
+      example:
+        id: aaaa-1111-bbbb-2222
+        name: サンプル
+        admin_type: 0
+        created_date: 20200220
+    400error:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Bad Request
